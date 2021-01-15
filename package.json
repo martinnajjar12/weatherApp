@@ -1,0 +1,24 @@
+{
+  "name": "weatherapp",
+  "version": "1.0.0",
+  "description": "This app will help you know the weather condition in any city you want.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martinnajjar12/weatherApp.git"
+  },
+  "author": "Martin Najjar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/martinnajjar12/weatherApp/issues"
+  },
+  "homepage": "https://github.com/martinnajjar12/weatherApp#readme",
+  "devDependencies": {
+    "css-loader": "^5.0.1",
+    "style-loader": "^2.0.0"
+  }
+}
