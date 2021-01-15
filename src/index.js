@@ -1,23 +1,19 @@
 require('./css/styles.css');
 
-let myCity = 'Baghdad';
-// function fetchApi() {
-//   fetch('https://jsonplaceholder.typicode.com/todos/1')
-//     .then((res) => {
-//       return res.json();
-//     })
-//     .then((data) => {
-//       return data;
-//     });
-// }
+let myCity = 'baghdad';
+let myUrl = `api.weatherapi.com/v1/current.json?key=bd962442b08549bca00173111211501&q=London`;
 
 async function fetchApi(cityName) {
-  const result = await fetch('https://jsonplaceholder.typicode.com/todos/1');
-  const data = await result.json();
-  const returnedData = data;
-  console.log(returnedData);
+  try {
+    const result = await fetch(
+      'api.weatherapi.com/v1/current.json?key=bd962442b08549bca00173111211501&q=London'
+    );
+    console.log(result);
+  } catch (err) {
+    console.log(err);
+  }
 }
-
+// anotherFunc(myCity);
 fetchApi(myCity);
 // console.log(fetchApi());
 // console.log(fetchApi());
