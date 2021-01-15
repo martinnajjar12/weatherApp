@@ -124,7 +124,7 @@ eval("\n\nvar isOldIE = function isOldIE() {\n  var memo;\n  return function mem
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-eval("__webpack_require__(/*! ./css/styles.css */ \"./src/css/styles.css\");\r\nconsole.log('hello');\r\n\n\n//# sourceURL=webpack://weatherapp/./src/index.js?");
+eval("__webpack_require__(/*! ./css/styles.css */ \"./src/css/styles.css\");\n\n//# sourceURL=webpack://weatherapp/./src/index.js?");
 })();
 
 /******/ })()

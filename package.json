@@ -18,8 +18,11 @@
   },
   "homepage": "https://github.com/martinnajjar12/weatherApp#readme",
   "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "babel-loader": "^8.2.2",
     "css-loader": "^5.0.1",
-    "dotenv": "^8.2.0",
+    "dotenv-webpack": "^6.0.0",
     "style-loader": "^2.0.0",
     "webpack": "^5.14.0",
     "webpack-cli": "^4.3.1"
