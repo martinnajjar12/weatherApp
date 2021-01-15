@@ -11,7 +11,7 @@ const cityInput = document.querySelector('#cityInput');
 const submit = document.querySelector('#submit');
 const locationBtn = document.querySelector('#getLocationBtn');
 const celOrFah = document.querySelector('#checkBox');
-let userCity = 'London';
+let userCity = 'Baghdad';
 
 function fillElements({ name, weather, main, wind }) {
   cityElement.textContent = name;
@@ -32,7 +32,7 @@ async function fetchApi(cityName) {
     const data = await result.json();
     fillElements(data);
   } catch (err) {
-    console.log(err);
+    cityElement.textContent = err;
   }
 }
 
@@ -44,7 +44,7 @@ async function fetchGeoLocationApi(lat, lon) {
     const data = await result.json();
     fillElements(data);
   } catch (err) {
-    console.log(err);
+    cityElement.textContent = err;
   }
 }
 
@@ -72,10 +72,9 @@ function checkUnits() {
     const mainTempNum = mainTemp.textContent.replace(/℉|℃/, '');
     const maxTempNum = maxTemp.textContent.replace(/℉|℃/, '');
     const minTempNum = minTemp.textContent.replace(/℉|℃/, '');
-    console.log(mainTempNum);
-    mainTemp.innerHTML = `${(((mainTempNum - 32) * 5) / 9).toFixed(2)}&#8457;`;
-    maxTemp.innerHTML = `${(((maxTempNum - 32) * 5) / 9).toFixed(2)}&#8457;`;
-    minTemp.innerHTML = `${(((minTempNum - 32) * 5) / 9).toFixed(2)}&#8457;`;
+    mainTemp.innerHTML = `${(((mainTempNum - 32) * 5) / 9).toFixed(2)}&#8451;`;
+    maxTemp.innerHTML = `${(((maxTempNum - 32) * 5) / 9).toFixed(2)}&#8451;`;
+    minTemp.innerHTML = `${(((minTempNum - 32) * 5) / 9).toFixed(2)}&#8451;`;
   }
 }
 
