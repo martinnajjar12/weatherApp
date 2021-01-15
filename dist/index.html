@@ -14,8 +14,13 @@
   <body>
     <div class="container">
       <div class="content p-3 text-white" id="content">
-        <input type="text" id="cityInput" class="form-control mb-3" />
-        <div class="d-flex justify-content-center align-items-center">
+        <input
+          placeholder="City Name"
+          type="text"
+          id="cityInput"
+          class="form-control mb-3"
+        />
+        <div class="d-flex justify-content-center align-items-center mb-3">
           <input
             type="button"
             id="submit"
@@ -27,24 +32,30 @@
             type="button"
             id="getLocationBtn"
             value="Get my current city"
-            class="btn btn-primary"
+            class="btn btn-primary me-3"
+          />
+          <input
+            type="checkbox"
+            id="checkBox"
+            class="checkBox"
+            title="Metric or Imperial units"
           />
         </div>
         <h1 class="cityName display-1"></h1>
-        <div class="row row-col-4">
+        <div class="row row-col-4 align-items-center">
           <div class="col">
             <img alt="icon" id="iconWeather" />
           </div>
           <div class="col">
-            <p class="mainTemp display-5">main temperature</p>
+            <p class="mainTemp display-5"></p>
             <div class="main"></div>
           </div>
           <div class="col">
             <div class="maxTemp"></div>
-            <div class="minTemp">min</div>
+            <div class="minTemp"></div>
           </div>
           <div class="col">
-            <div class="windSpeed">windSpeed</div>
+            <div class="windSpeed"></div>
           </div>
         </div>
       </div>

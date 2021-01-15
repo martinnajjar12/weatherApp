@@ -7,6 +7,7 @@ const maxTemp = document.querySelector('.maxTemp');
 const minTemp = document.querySelector('.minTemp');
 const windSpeed = document.querySelector('.windSpeed');
 const cityElement = document.querySelector('.cityName');
+const cityInput = document.querySelector('#cityInput');
 const submit = document.querySelector('#submit');
 const locationBtn = document.querySelector('#getLocationBtn');
 let userCity = 'London';
@@ -17,8 +18,8 @@ function fillElements({ name, weather, main, wind }) {
   icon = weather[0].icon;
   iconTag.src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
   mainTemp.innerHTML = `${main.temp}&#8451;`;
-  maxTemp.innerHTML = `Max : ${main.temp_max}`;
-  minTemp.textContent = `Min : ${main.temp_min}`;
+  maxTemp.innerHTML = `Max : ${main.temp_max}&#8451;`;
+  minTemp.innerHTML = `Min : ${main.temp_min}&#8451;`;
   windSpeed.textContent = `Wind Speed: ${wind.speed}`;
 }
 
@@ -47,7 +48,6 @@ async function fetchGeoLocationApi(lat, lon) {
 }
 
 function getUserInput() {
-  const cityInput = document.querySelector('#cityInput');
   userCity = cityInput.value;
   fetchApi(userCity);
 }
@@ -60,5 +60,10 @@ function accessUserLocation() {
 }
 
 submit.addEventListener('click', getUserInput);
+cityInput.addEventListener('keyup', (e) => {
+  if (e.keyCode == 13) {
+    getUserInput();
+  }
+});
 locationBtn.addEventListener('click', accessUserLocation);
 fetchApi(userCity);
