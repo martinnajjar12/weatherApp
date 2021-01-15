@@ -38,7 +38,7 @@ To get a local copy up and running follow these simple example steps.
 
 ### Setup
 
-<p>Clone this repo either by typing `git clone https://github.com/martinnajjar12/restaurant-page` (You must have git installed on your local machine in this case) or download a zip version of the code from GitHub.</p>
+<p>Clone this repo either by typing `git clone https://github.com/martinnajjar12/weatherApp` (You must have git installed on your local machine in this case) or download a zip version of the code from GitHub.</p>
 
 <p>Instal the dependencies with:</p>
 
