@@ -1,3 +1,6 @@
 body {
-  background-color: aquamarine;
+  background-image: url(../imgs/clearSky.jpg);
+  /* background-position: center; */
+  background-size: cover;
+  background-repeat: no-repeat;
 }
