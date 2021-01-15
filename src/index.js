@@ -50,12 +50,15 @@ async function fetchGeoLocationApi(lat, lon) {
 
 function getUserInput() {
   userCity = cityInput.value;
+  celOrFah.checked = false;
   fetchApi(userCity);
+  cityInput.value = '';
 }
 
 function accessUserLocation() {
   navigator.geolocation.getCurrentPosition(({ coords }) => {
     const { latitude, longitude } = coords;
+    celOrFah.checked = false;
     fetchGeoLocationApi(latitude, longitude);
   });
 }
