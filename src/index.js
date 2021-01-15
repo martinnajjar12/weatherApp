@@ -16,10 +16,10 @@ function fillElements({ name, weather, main, wind }) {
   description.textContent = weather[0].description;
   icon = weather[0].icon;
   iconTag.src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
-  mainTemp.textContent = main.temp;
-  maxTemp.textContent = main.temp_max;
-  minTemp.textContent = main.temp_min;
-  windSpeed.textContent = wind.speed;
+  mainTemp.innerHTML = `${main.temp}&#8451;`;
+  maxTemp.innerHTML = `Max : ${main.temp_max}`;
+  minTemp.textContent = `Min : ${main.temp_min}`;
+  windSpeed.textContent = `Wind Speed: ${wind.speed}`;
 }
 
 async function fetchApi(cityName) {

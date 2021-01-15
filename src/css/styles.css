@@ -5,9 +5,9 @@ body {
 }
 
 .container {
-  width: 80vw;
-  height: 80vh;
-  opacity: 0.35;
+  width: 40vw;
+  height: 60vh;
+  background-color: rgba(33, 37, 41, 0.35);
   position: absolute;
   left: 50%;
   top: 50%;
@@ -15,8 +15,29 @@ body {
 }
 
 .content {
+  width: 30vw;
+  height: 50vh;
   position: absolute;
   top: 50%;
   right: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(50%, -50%);
+}
+
+h1 {
+  border-bottom: 3px solid #fff;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: red;
+}
+
+.footer {
+  position: absolute;
+  bottom: 8px;
+  right: 15px;
 }
