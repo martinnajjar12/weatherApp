@@ -7,7 +7,9 @@ const maxTemp = document.querySelector('.maxTemp');
 const minTemp = document.querySelector('.minTemp');
 const windSpeed = document.querySelector('.windSpeed');
 const cityElement = document.querySelector('.cityName');
-let myCity = 'baghdad';
+const submit = document.querySelector('#submit');
+const locationBtn = document.querySelector('#getLocationBtn');
+let userCity = 'London';
 
 function fillElements({ name, weather, main, wind }) {
   cityElement.textContent = name;
@@ -23,7 +25,7 @@ function fillElements({ name, weather, main, wind }) {
 async function fetchApi(cityName) {
   try {
     const result = await fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${process.env.API_KEY}`
+      `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${process.env.API_KEY}&units=metric`
     );
     const data = await result.json();
     fillElements(data);
@@ -32,4 +34,31 @@ async function fetchApi(cityName) {
   }
 }
 
-fetchApi(myCity);
+async function fetchGeoLocationApi(lat, lon) {
+  try {
+    const result = await fetch(
+      `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.API_KEY}&units=metric`
+    );
+    const data = await result.json();
+    fillElements(data);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+function getUserInput() {
+  const cityInput = document.querySelector('#cityInput');
+  userCity = cityInput.value;
+  fetchApi(userCity);
+}
+
+function accessUserLocation() {
+  navigator.geolocation.getCurrentPosition(({ coords }) => {
+    const { latitude, longitude } = coords;
+    fetchGeoLocationApi(latitude, longitude);
+  });
+}
+
+submit.addEventListener('click', getUserInput);
+locationBtn.addEventListener('click', accessUserLocation);
+fetchApi(userCity);
