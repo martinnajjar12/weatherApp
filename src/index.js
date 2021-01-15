@@ -10,6 +10,7 @@ const cityElement = document.querySelector('.cityName');
 const cityInput = document.querySelector('#cityInput');
 const submit = document.querySelector('#submit');
 const locationBtn = document.querySelector('#getLocationBtn');
+const celOrFah = document.querySelector('#checkBox');
 let userCity = 'London';
 
 function fillElements({ name, weather, main, wind }) {
@@ -18,8 +19,8 @@ function fillElements({ name, weather, main, wind }) {
   icon = weather[0].icon;
   iconTag.src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
   mainTemp.innerHTML = `${main.temp}&#8451;`;
-  maxTemp.innerHTML = `Max : ${main.temp_max}&#8451;`;
-  minTemp.innerHTML = `Min : ${main.temp_min}&#8451;`;
+  maxTemp.innerHTML = `${main.temp_max}&#8451;`;
+  minTemp.innerHTML = `${main.temp_min}&#8451;`;
   windSpeed.textContent = `Wind Speed: ${wind.speed}`;
 }
 
@@ -59,6 +60,25 @@ function accessUserLocation() {
   });
 }
 
+function checkUnits() {
+  if (celOrFah.checked) {
+    const mainTempNum = mainTemp.textContent.replace(/℃|℉/, '');
+    const maxTempNum = maxTemp.textContent.replace(/℃|℉/, '');
+    const minTempNum = minTemp.textContent.replace(/℃|℉/, '');
+    mainTemp.innerHTML = `${((mainTempNum * 9) / 5 + 32).toFixed(2)}&#8457;`;
+    maxTemp.innerHTML = `${((maxTempNum * 9) / 5 + 32).toFixed(2)}&#8457;`;
+    minTemp.innerHTML = `${((minTempNum * 9) / 5 + 32).toFixed(2)}&#8457;`;
+  } else {
+    const mainTempNum = mainTemp.textContent.replace(/℉|℃/, '');
+    const maxTempNum = maxTemp.textContent.replace(/℉|℃/, '');
+    const minTempNum = minTemp.textContent.replace(/℉|℃/, '');
+    console.log(mainTempNum);
+    mainTemp.innerHTML = `${(((mainTempNum - 32) * 5) / 9).toFixed(2)}&#8457;`;
+    maxTemp.innerHTML = `${(((maxTempNum - 32) * 5) / 9).toFixed(2)}&#8457;`;
+    minTemp.innerHTML = `${(((minTempNum - 32) * 5) / 9).toFixed(2)}&#8457;`;
+  }
+}
+
 submit.addEventListener('click', getUserInput);
 cityInput.addEventListener('keyup', (e) => {
   if (e.keyCode == 13) {
@@ -66,4 +86,5 @@ cityInput.addEventListener('keyup', (e) => {
   }
 });
 locationBtn.addEventListener('click', accessUserLocation);
+celOrFah.addEventListener('click', checkUnits);
 fetchApi(userCity);
