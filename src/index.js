@@ -1,4 +1,4 @@
-require('./css/styles.css');
+import './css/styles.css';
 
 const description = document.querySelector('.main');
 const iconTag = document.querySelector('#iconWeather');
@@ -13,12 +13,12 @@ const locationBtn = document.querySelector('#getLocationBtn');
 const celOrFah = document.querySelector('#checkBox');
 let userCity = 'Baghdad';
 
-function fillElements({
+const fillElements = ({
   name,
   weather,
   main,
   wind,
-}) {
+}) => {
   cityElement.textContent = name;
   description.textContent = weather[0].description;
   const { icon } = weather[0];
@@ -27,9 +27,17 @@ function fillElements({
   maxTemp.innerHTML = `${main.temp_max}&#8451;`;
   minTemp.innerHTML = `${main.temp_min}&#8451;`;
   windSpeed.textContent = `Wind Speed: ${wind.speed}`;
-}
+};
 
-async function fetchApi(cityName) {
+const errorHandler = () => {
+  const errorDiv = document.querySelector('#errorDiv');
+  const errorStatement = document.createElement('p');
+  errorStatement.className = 'text-white text-center mt-5';
+  errorStatement.textContent = 'Wrong Input! Please enter a valid city name';
+  errorDiv.appendChild(errorStatement);
+};
+
+const fetchApi = async (cityName) => {
   try {
     const result = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${process.env.API_KEY}&units=metric`,
@@ -37,11 +45,11 @@ async function fetchApi(cityName) {
     const data = await result.json();
     fillElements(data);
   } catch (err) {
-    cityElement.textContent = err;
+    errorHandler();
   }
-}
+};
 
-async function fetchGeoLocationApi(lat, lon) {
+const fetchGeoLocationApi = async (lat, lon) => {
   try {
     const result = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.API_KEY}&units=metric`,
@@ -49,26 +57,26 @@ async function fetchGeoLocationApi(lat, lon) {
     const data = await result.json();
     fillElements(data);
   } catch (err) {
-    cityElement.textContent = err;
+    errorHandler();
   }
-}
+};
 
-function getUserInput() {
+const getUserInput = () => {
   userCity = cityInput.value;
   celOrFah.checked = false;
   fetchApi(userCity);
   cityInput.value = '';
-}
+};
 
-function accessUserLocation() {
+const accessUserLocation = () => {
   navigator.geolocation.getCurrentPosition(({ coords }) => {
     const { latitude, longitude } = coords;
     celOrFah.checked = false;
     fetchGeoLocationApi(latitude, longitude);
   });
-}
+};
 
-function checkUnits() {
+const checkUnits = () => {
   if (celOrFah.checked) {
     const mainTempNum = mainTemp.textContent.replace(/℃|℉/, '');
     const maxTempNum = maxTemp.textContent.replace(/℃|℉/, '');
@@ -84,7 +92,7 @@ function checkUnits() {
     maxTemp.innerHTML = `${(((maxTempNum - 32) * 5) / 9).toFixed(2)}&#8451;`;
     minTemp.innerHTML = `${(((minTempNum - 32) * 5) / 9).toFixed(2)}&#8451;`;
   }
-}
+};
 
 submit.addEventListener('click', getUserInput);
 cityInput.addEventListener('keyup', (e) => {

@@ -4,8 +4,8 @@
   "description": "This app will help you know the weather condition in any city you want.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack --watch"
+    "dev": "webpack --watch --mode development",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
