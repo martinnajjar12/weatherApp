@@ -13,10 +13,15 @@ const locationBtn = document.querySelector('#getLocationBtn');
 const celOrFah = document.querySelector('#checkBox');
 let userCity = 'Baghdad';
 
-function fillElements({ name, weather, main, wind }) {
+function fillElements({
+  name,
+  weather,
+  main,
+  wind,
+}) {
   cityElement.textContent = name;
   description.textContent = weather[0].description;
-  icon = weather[0].icon;
+  const { icon } = weather[0];
   iconTag.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
   mainTemp.innerHTML = `${main.temp}&#8451;`;
   maxTemp.innerHTML = `${main.temp_max}&#8451;`;
@@ -27,7 +32,7 @@ function fillElements({ name, weather, main, wind }) {
 async function fetchApi(cityName) {
   try {
     const result = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${process.env.API_KEY}&units=metric`
+      `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${process.env.API_KEY}&units=metric`,
     );
     const data = await result.json();
     fillElements(data);
@@ -39,7 +44,7 @@ async function fetchApi(cityName) {
 async function fetchGeoLocationApi(lat, lon) {
   try {
     const result = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.API_KEY}&units=metric`
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.API_KEY}&units=metric`,
     );
     const data = await result.json();
     fillElements(data);
@@ -83,7 +88,7 @@ function checkUnits() {
 
 submit.addEventListener('click', getUserInput);
 cityInput.addEventListener('keyup', (e) => {
-  if (e.keyCode == 13) {
+  if (e.keyCode === 13) {
     getUserInput();
   }
 });
