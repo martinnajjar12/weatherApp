@@ -17,11 +17,11 @@ let userCity = 'Baghdad';
 const changeBodyBackground = ({ weather }) => {
   const desc = weather[0].description;
   if (desc.includes('rain')) {
-    body.style.backgroundImage = 'url(../src/imgs/rainy.jpg)';
+    body.style.backgroundImage = 'url(./images/rainy.jpg)';
   } else if (desc.includes('snow')) {
-    body.style.backgroundImage = 'url(../src/imgs/snowy.jpg)';
+    body.style.backgroundImage = 'url(./images/snowy.jpg)';
   } else {
-    body.style.backgroundImage = 'url(../src/imgs/clearSky.jpg)';
+    body.style.backgroundImage = 'url(./images/clearSky.jpg)';
   }
 };
 
