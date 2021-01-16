@@ -71,6 +71,7 @@ const fetchGeoLocationApi = async (lat, lon) => {
       `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.API_KEY}&units=metric`,
     );
     const data = await result.json();
+    changeBodyBackground(data);
     fillElements(data);
   } catch (err) {
     errorHandler();
