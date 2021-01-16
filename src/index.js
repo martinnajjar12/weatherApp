@@ -1,5 +1,6 @@
 import './css/styles.css';
 
+const body = document.querySelector('body');
 const description = document.querySelector('.main');
 const iconTag = document.querySelector('#iconWeather');
 const mainTemp = document.querySelector('.mainTemp');
@@ -12,6 +13,17 @@ const submit = document.querySelector('#submit');
 const locationBtn = document.querySelector('#getLocationBtn');
 const celOrFah = document.querySelector('#checkBox');
 let userCity = 'Baghdad';
+
+const changeBodyBackground = ({ weather }) => {
+  const desc = weather[0].description;
+  if (desc.includes('rain')) {
+    body.style.backgroundImage = 'url(../src/imgs/rainy.jpg)';
+  } else if (desc.includes('snow')) {
+    body.style.backgroundImage = 'url(../src/imgs/snowy.jpg)';
+  } else {
+    body.style.backgroundImage = 'url(../src/imgs/clearSky.jpg)';
+  }
+};
 
 const fillElements = ({
   name,
@@ -35,6 +47,9 @@ const errorHandler = () => {
   errorStatement.className = 'text-white text-center mt-5';
   errorStatement.textContent = 'Wrong Input! Please enter a valid city name';
   errorDiv.appendChild(errorStatement);
+  setTimeout(() => {
+    errorDiv.innerHTML = '';
+  }, 5000);
 };
 
 const fetchApi = async (cityName) => {
@@ -43,6 +58,7 @@ const fetchApi = async (cityName) => {
       `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${process.env.API_KEY}&units=metric`,
     );
     const data = await result.json();
+    changeBodyBackground(data);
     fillElements(data);
   } catch (err) {
     errorHandler();
