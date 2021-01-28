@@ -52,7 +52,7 @@ const errorHandler = () => {
   }, 5000);
 };
 
-const fetchApi = async (cityName) => {
+const fetchApi = async cityName => {
   try {
     const result = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${process.env.API_KEY}&units=metric`,
@@ -98,21 +98,21 @@ const checkUnits = () => {
     const mainTempNum = mainTemp.textContent.replace(/℃|℉/, '');
     const maxTempNum = maxTemp.textContent.replace(/℃|℉/, '');
     const minTempNum = minTemp.textContent.replace(/℃|℉/, '');
-    mainTemp.innerHTML = `${((mainTempNum * 9) / 5 + 32).toFixed(2)}&#8457;`;
-    maxTemp.innerHTML = `${((maxTempNum * 9) / 5 + 32).toFixed(2)}&#8457;`;
-    minTemp.innerHTML = `${((minTempNum * 9) / 5 + 32).toFixed(2)}&#8457;`;
+    mainTemp.innerHTML = `${((mainTempNum * 9) / 5 + 32).toFixed(0)}&#8457;`;
+    maxTemp.innerHTML = `${((maxTempNum * 9) / 5 + 32).toFixed(0)}&#8457;`;
+    minTemp.innerHTML = `${((minTempNum * 9) / 5 + 32).toFixed(0)}&#8457;`;
   } else {
     const mainTempNum = mainTemp.textContent.replace(/℉|℃/, '');
     const maxTempNum = maxTemp.textContent.replace(/℉|℃/, '');
     const minTempNum = minTemp.textContent.replace(/℉|℃/, '');
-    mainTemp.innerHTML = `${(((mainTempNum - 32) * 5) / 9).toFixed(2)}&#8451;`;
-    maxTemp.innerHTML = `${(((maxTempNum - 32) * 5) / 9).toFixed(2)}&#8451;`;
-    minTemp.innerHTML = `${(((minTempNum - 32) * 5) / 9).toFixed(2)}&#8451;`;
+    mainTemp.innerHTML = `${(((mainTempNum - 32) * 5) / 9).toFixed(0)}&#8451;`;
+    maxTemp.innerHTML = `${(((maxTempNum - 32) * 5) / 9).toFixed(0)}&#8451;`;
+    minTemp.innerHTML = `${(((minTempNum - 32) * 5) / 9).toFixed(0)}&#8451;`;
   }
 };
 
 submit.addEventListener('click', getUserInput);
-cityInput.addEventListener('keyup', (e) => {
+cityInput.addEventListener('keyup', e => {
   if (e.keyCode === 13) {
     getUserInput();
   }
